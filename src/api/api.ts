@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Crie uma instância do axios com configuração padrão
 const api = axios.create({
-  baseURL: 'https://app-forum-app-forum.up.railway.app', // Substitua pela URL base da sua API
+  baseURL: 'http://localhost:3333', // Substitua pela URL base da sua API
   headers: {
     'Content-Type': 'application/json',
   },
