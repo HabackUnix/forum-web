@@ -69,7 +69,7 @@ const LoginComponent: React.FC = () => {
 
 
   return (
-    <div className="flex justify-center items-center flex-col gap-5 bg-zinc-800 mx-auto w-full h-full max-sm:w-max">
+    <div className="flex justify-center items-center flex-col gap-5 bg-zinc-800 mx-auto w-full h-full">
       <h2 className="text-center text-lg font-bold text-white">
         FORUM WEB - <span className="text-blue-500">IFAP</span>
       </h2>
