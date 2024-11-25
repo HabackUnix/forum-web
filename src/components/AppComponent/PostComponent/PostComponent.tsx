@@ -209,11 +209,11 @@ const PostComponent = () => {
 
   return (
     
-    <div className="flex flex-col h-full w-full rounded-md justify-center p-3">
+    <div className="flex flex-col justify-center items-center gap-5 h-full w-full p-1">
       <div className="flex flex-row justify-between w-full px-5">
         <button 
           onClick={openModal}
-          className=" bg-slate-950 p-2 rounded-md max-sm:text-sm text-slate-300 border border-indigo-800 border-opacity-50">
+          className=" inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
           Novo post
         </button>
         <div>
@@ -235,7 +235,7 @@ const PostComponent = () => {
       
 
 
-      <div className="flex flex-col gap-4 p-3 rounded-md w-full h-full overflow-hidden">
+      <div className="flex flex-col gap-3 w-full h-[16rem] max-sm:h-[42rem] max-md:h-[28rem] md:h-[28rem] lg:h-[28rem] overflow-y-auto scrollbar-none">
         
       {filteredPosts.length > 0 ? (
           filteredPosts.map((post) => (
