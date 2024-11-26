@@ -1,7 +1,46 @@
+import { useEffect, useState } from "react";
 import { FaCheck } from "react-icons/fa";
+import getUserDetails from "../../../../api/get-user-details";
+
+interface User {
+    id: string,         // USER INFO
+    name: string,
+    username: string,
+    email: string,
+}
 
 
 const PerfilUserComponent = () => {
+
+    const [userInfo, setUserInfo] = useState<User>();
+
+    const fetchUserInfo = async () => {
+        try {
+            const userId = localStorage.getItem('userId');
+            const authToken = localStorage.getItem('authToken');
+    
+            if (!userId) {
+                console.error('User ID não encontrado');
+                return;
+            }
+
+            if (!authToken) {
+                console.error('Token não encontrado');
+                return;
+            }
+
+            const response = await getUserDetails(userId, authToken);
+            setUserInfo(response)
+    
+        } catch (error) {
+            console.error('Erro ao buscar detalhes do usuario', error);
+        }
+    };
+    
+    useEffect(() => {
+
+         fetchUserInfo();
+    }, [])
 
 
     return (
@@ -31,7 +70,7 @@ const PerfilUserComponent = () => {
                                 Nome Completo
                             </dt>
                             <dd className="mt-1 text-sm text-zinc-200 sm:mt-0 sm:col-span-2">
-                                Forum Web - IFAP
+                                {userInfo?.name}
                             </dd>
                         </div>
                         <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -39,7 +78,7 @@ const PerfilUserComponent = () => {
                                 Nome de Usuário
                             </dt>
                             <dd className="mt-1 text-sm text-zinc-200 sm:mt-0 sm:col-span-2">
-                                forumwebifap
+                                {userInfo?.username}
                             </dd>
                         </div>
                         <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -47,7 +86,7 @@ const PerfilUserComponent = () => {
                                 Endereço de E-mail
                             </dt>
                             <dd className="mt-1 text-sm text-zinc-200 sm:mt-0 sm:col-span-2">
-                                forumwebifap@ifap.edu.gov
+                                {userInfo?.email}
                             </dd>
                         </div>
                         <div className="flex flex-row items-center gap-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
