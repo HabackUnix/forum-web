@@ -17,20 +17,16 @@ const PerfilUserComponent = () => {
     const fetchUserInfo = async () => {
         try {
             const userId = localStorage.getItem('userId');
-            const authToken = localStorage.getItem('authToken');
     
             if (!userId) {
                 console.error('User ID não encontrado');
                 return;
             }
 
-            if (!authToken) {
-                console.error('Token não encontrado');
-                return;
-            }
 
-            const response = await getUserDetails(userId, authToken);
+            const response = await getUserDetails(userId);
             setUserInfo(response)
+
     
         } catch (error) {
             console.error('Erro ao buscar detalhes do usuario', error);
